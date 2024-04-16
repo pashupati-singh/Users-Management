@@ -24,3 +24,18 @@
       background-color: #ddd; 
     }
   }
+
+  
+  @media screen and (max-width : 750px) {
+   
+    .parent{
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+      
+  }
+  }
+  @media screen and (max-width : 350px)  {
+    .cardSkeleton {
+      width: 240px;      
+    }
+  }
