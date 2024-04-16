@@ -87,3 +87,7 @@ Folder Structure
         ├── App.js
         ├── index.css
         └── index.js
+# Important 
+
+Home page :- click on Logo 
+Add user :- Click on add user on Navbar
