@@ -5,6 +5,8 @@ The User Management Website is a platform designed to manage user data efficient
 
 deployed on netlify - https://jolly-toffee-301912.netlify.app/
 
+server deployed on render :- https://users-management-1.onrender.com
+
 # Features
 Add User: Easily add new users to the system.
 View User List: See a list of all users on the home page.
