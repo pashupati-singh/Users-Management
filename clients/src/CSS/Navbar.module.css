@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #ebe5e5;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content:space-evenly; 
+    align-items: center; 
+    margin-bottom: 20px;
+  }
+  
+  .navbarlinks a {
+    font-family: 'Arial', sans-serif; 
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 30px;
+    color: rgb(1, 1, 1);
+  }
+  
+  .navbarlinks a {
+    margin-right: 20px;
+  }
+  
+  .navbarlinks a:hover  {
+    color: rgb(131, 129, 129);
+  }
+  
