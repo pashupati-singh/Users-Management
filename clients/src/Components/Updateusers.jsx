@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import style from '../CSS/AddUser.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { USERSUPDATEFUN } from '../Redux/UsersManagement/action';
@@ -16,6 +16,7 @@ export const Updateusers = () => {
         department: user[0].department
       });
       const [showNotification, setShowNotification] = useState(false);
+      const [nav,setNav] = useState(false)
       const [notificationMessage, setNotificationMessage] = useState('');
     
       const handleChange = (e) => {
@@ -28,11 +29,16 @@ export const Updateusers = () => {
         await dispatch(USERSUPDATEFUN(formData, id));
         setShowNotification(true);
         setNotificationMessage('User updated successfully!');
+        setNav(true)
         setTimeout(() => {
           setShowNotification(false);
           setNotificationMessage('');
         }, 3000);
       }; 
+
+      if(nav){
+      return  <Navigate to={'/'} />
+      }
  
   return (
     <>

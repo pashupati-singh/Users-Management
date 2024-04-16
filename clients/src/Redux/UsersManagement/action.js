@@ -6,21 +6,21 @@ import { USERFAILURE, USERREQUEST, USERSDELETE, USERSGET, USERSPATCH, USERSPOST 
 
 export const USERSGETFUN = (page) => (dispatch) =>{
     dispatch({type:USERREQUEST});
-    axios.get(`http://localhost:8080/users?page=${page}`)
+    axios.get(`https://users-management-1.onrender.com/users?page=${page}`)
     .then((res)=>dispatch({type:USERSGET,payload:res.data}))
     .catch(()=>dispatch({type:USERFAILURE}))
 }
 
 export const USERSADDFUN = (obj) => (dispatch) =>{
     dispatch({type:USERREQUEST});
-    axios.post(`http://localhost:8080/users/`,obj)
+    axios.post(`https://users-management-1.onrender.com/users/`,obj)
     .then((res)=>dispatch({type:USERSPOST,payload:res.data}))
     .catch(()=>dispatch({type:USERFAILURE}))
 }
 
 export const USERSUPDATEFUN = (formData,id) => (dispatch) =>{
     dispatch({type:USERREQUEST});
-    axios.patch(`http://localhost:8080/users/${id}`,formData)
+    axios.patch(`https://users-management-1.onrender.com/users/${id}`,formData)
     .then((res)=>{
         dispatch({type:USERSPATCH,payload:res.data})
     })
@@ -29,7 +29,7 @@ export const USERSUPDATEFUN = (formData,id) => (dispatch) =>{
 
 export const USERSDELETEFUN = (id) => (dispatch) =>{
     dispatch({type:USERREQUEST});
-    axios.delete(`http://localhost:8080/users/${id}`)
+    axios.delete(`https://users-management-1.onrender.com/users/${id}`)
     .then((res)=>{
         alert(res.data.msg);
         dispatch({type:USERSDELETE,payload:res.data})
