@@ -77,6 +77,12 @@ Folder Structure
         ├── Pages
         │   ├── HomePage.jsx
         │   └── MainRoutes.jsx
+        ├── Redux
+        │   ├── UserManagment
+                │   ├── action.js
+                │   ├── actionType.js
+                |   ├── reducer.js
+        │   ├── store
         ├── App.css
         ├── App.js
         ├── index.css
