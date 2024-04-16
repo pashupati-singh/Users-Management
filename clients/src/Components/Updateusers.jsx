@@ -35,7 +35,9 @@ export const Updateusers = () => {
       }; 
  
   return (
-    <div className={style.container}>
+    <>
+     <div className={style.heading}>UPDATE USER</div>
+     <div className={style.container}>
     <form className={style.userform} onSubmit={handleSubmit}>
    <div className={style.formgroup}>
      <label htmlFor="firstname">First Name:</label>
@@ -93,5 +95,7 @@ export const Updateusers = () => {
         </div>
       )}
  </div>
+    </>
+   
   )
 }

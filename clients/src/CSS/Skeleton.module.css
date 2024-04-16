@@ -1,0 +1,26 @@
+
+.cardSkeleton {
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 400px;
+    background-color: #f5f5f5; 
+    animation: loadingAnimation 1s infinite alternate; 
+  }
+  .parent{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+}
+  @keyframes loadingAnimation {
+    0% {
+      background-color: #f5f5f5;
+    }
+    100% {
+      background-color: #ddd; 
+    }
+  }

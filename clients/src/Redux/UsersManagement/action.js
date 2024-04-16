@@ -22,7 +22,6 @@ export const USERSUPDATEFUN = (formData,id) => (dispatch) =>{
     dispatch({type:USERREQUEST});
     axios.patch(`http://localhost:8080/users/${id}`,formData)
     .then((res)=>{
-        alert(res.data.msg);
         dispatch({type:USERSPATCH,payload:res.data})
     })
     .catch(()=>dispatch({type:USERFAILURE}))

@@ -4,10 +4,11 @@ import { USERSDELETEFUN, USERSGETFUN } from '../Redux/UsersManagement/action';
 import { Pagination } from '../Components/Pagination';
 import { UsersList } from '../Components/UsersList';
 import style from "../CSS/Home.module.css"
+import { Skeleton } from '../Components/Skeleton';
 export const Home = () => {
     const dispatch = useDispatch();
     const [page,setPage] = useState(1);
-    const {users} = useSelector((store)=>store.userReducer)
+    const {users,isLoading} = useSelector((store)=>store.userReducer)
     const [delte,setDelete] = useState(false)
 
 
@@ -25,20 +26,24 @@ export const Home = () => {
        FetchData(page)
      }
 
+
 useEffect(()=>{ 
     FetchData(page)
 },[page,delte])
 
   return (
     <>
+     <div className={style.heading}>LIST OF ALL USER</div>
+    {isLoading ? <Skeleton /> :
     <div className={style.parent}>
+      
     {users.map((el) =>(
         <div key={el._id} >
             <UsersList handleDelete = {handleDelete} {...el} />
         </div>
     ))}
     </div>
-    
+}
     <Pagination page = {page} handlePage = {handlePage} />
     </>
   )

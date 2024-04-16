@@ -33,6 +33,7 @@ export const AddUser = () => {
     setNewUser(!newUser)
   }
   useEffect(() => {
+     
       setShowNotification(true);
       setNotificationMessage(add)
     setTimeout(() => {
@@ -43,6 +44,7 @@ export const AddUser = () => {
 
   return (
   <>
+  <div className={style.heading}>ADD NEW USER</div>
    <div className={style.container}>
      <form className={style.userform} onSubmit={handleSubmit}>
     <div className={style.formgroup}>
