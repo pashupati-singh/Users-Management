@@ -18,7 +18,7 @@ Clone the repository:
 
 1.bash
 Copy code
-git clone https://github.com/your-username/user-management-website.git
+git clone https://github.com/pashupati-singh/Users-Management.git
 Navigate to the project directory:
 
 2. bash
@@ -87,3 +87,8 @@ Folder Structure
         ├── App.js
         ├── index.css
         └── index.js
+# Important 
+
+Home page :- click on Logo 
+
+Add user :- Click on add user on Navbar
