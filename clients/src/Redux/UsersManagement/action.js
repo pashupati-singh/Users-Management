@@ -14,7 +14,10 @@ export const USERSGETFUN = (page) => (dispatch) =>{
 export const USERSADDFUN = (obj) => (dispatch) =>{
     dispatch({type:USERREQUEST});
     axios.post(`https://users-management-1.onrender.com/users/`,obj)
-    .then((res)=>dispatch({type:USERSPOST,payload:res.data}))
+    .then((res)=>{
+        alert(res.data.msg);
+        dispatch({type:USERSPOST,payload:res.data})
+    })
     .catch(()=>dispatch({type:USERFAILURE}))
 }
 

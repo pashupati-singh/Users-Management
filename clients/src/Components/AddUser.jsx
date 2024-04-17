@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import style from '../CSS/AddUser.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { USERSADDFUN } from '../Redux/UsersManagement/action';
 
 export const AddUser = () => {
@@ -10,11 +10,8 @@ export const AddUser = () => {
     email: '',
     department: ''
   });
-  const [showNotification, setShowNotification] = useState(false);
-  const[newUser,setNewUser] = useState(false)
   const dispatch = useDispatch();
-  const {add , addUser} = useSelector((store)=>store.userReducer)
-  const [notificationMessage, setNotificationMessage] = useState(''); 
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,17 +27,9 @@ export const AddUser = () => {
       email: '',
       department: ''
     });
-    setNewUser(!newUser)
+   
   }
-  useEffect(() => {
-     
-      setShowNotification(true);
-      setNotificationMessage(add)
-    setTimeout(() => {
-      setShowNotification(false);
-      setNotificationMessage('')
-    }, 1000);
-  }, [addUser, add,newUser]); 
+  
 
   return (
   <>
@@ -98,10 +87,6 @@ export const AddUser = () => {
     <button type="submit">Submit</button>
   </form>
    </div>
-
-   <div className={`${style.notification} ${showNotification ? '' : style.hide} ${addUser ? '' : style.error}`}>
-        {notificationMessage}
-      </div>
       </>
   )
 }
