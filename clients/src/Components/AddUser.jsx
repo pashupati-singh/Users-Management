@@ -1,31 +1,57 @@
 import React, {  useState } from 'react'
 import style from '../CSS/AddUser.module.css'
-import { useDispatch } from 'react-redux';
-import { USERSADDFUN } from '../Redux/UsersManagement/action';
 
-export const AddUser = () => {
+export const AddUser = ({setUsers}) => {
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    department: ''
+    name : "",
+      email : "",
+      company : {
+        name:""
+      }
   });
-  const dispatch = useDispatch();
-  
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === "company") {
+      setFormData({
+        ...formData,
+        company: {
+          ...formData.company,
+          name: value
+        }
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(USERSADDFUN(formData))
+    await fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      body: JSON.stringify({formData}),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => {
+        if (res.status !== 201) {
+          return;
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setUsers((users) => [...users, data.formData]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setFormData({ 
-      firstname: '',
-      lastname: '',
-      email: '',
-      department: ''
+      name : "",
+      email : "",
+      company : {
+        name:""
+      }
     });
    
   }
@@ -37,23 +63,12 @@ export const AddUser = () => {
    <div className={style.container}>
      <form className={style.userform} onSubmit={handleSubmit}>
     <div className={style.formgroup}>
-      <label htmlFor="firstname">First Name:</label>
+      <label htmlFor="name">Name:</label>
       <input
         type="text"
-        id="firstname"
-        name="firstname"
-        value={formData.firstname}
-        onChange={handleChange}
-        required
-      />
-    </div>
-    <div className="form-group">
-      <label htmlFor="lastname">Last Name:</label>
-      <input
-        type="text"
-        id="lastname"
-        name="lastname"
-        value={formData.lastname}
+        id="name"
+        name="name"
+        value={formData.name}
         onChange={handleChange}
         required
       />
@@ -70,11 +85,11 @@ export const AddUser = () => {
       />
     </div>
     <div className="form-group">
-      <label htmlFor="department">Department:</label>
+      <label htmlFor="company">Department:</label>
       <select
-        id="department"
-        name="department"
-        value={formData.department}
+        id="company"
+        name="company"
+        value={formData.company.name}
         onChange={handleChange}
         required
       >

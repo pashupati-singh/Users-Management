@@ -1,38 +1,53 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
 import style from '../CSS/AddUser.module.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { USERSUPDATEFUN } from '../Redux/UsersManagement/action';
 
-export const Updateusers = () => {
-   const dispatch = useDispatch();
-    const {id} = useParams();
-    const {users} = useSelector((store)=>store.userReducer)
-    const user = users.filter((el)=>el._id === id);
+export const Updateusers = ({setUpdate,users,setUsers,valueId}) => {
+    
+  
+    const user = users.filter((el)=>el.id === valueId);
     const [formData, setFormData] = useState({
-        firstname: user[0].firstname,
-        lastname:user[0].lastname,
-        email: user[0].email,
-        department: user[0].department
-      });
-      const [showNotification, setShowNotification] = useState(false);
-      const [notificationMessage, setNotificationMessage] = useState('');
+      name: user[0].name,
+      email: user[0].email,
+      company: {
+        name: user[0].company.name
+      }
+    });
     
-      const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      if (name === "company") {
+        setFormData({
+          ...formData,
+          company: {
+            ...formData.company,
+            name: value
+          }
+        });
+      } else {
         setFormData({ ...formData, [name]: value });
-      };
+      }
+    };
     
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        await dispatch(USERSUPDATEFUN(formData, id));
-        setShowNotification(true);
-        setNotificationMessage('User updated successfully!');
-        setTimeout(() => {
-          setShowNotification(false);
-          setNotificationMessage('');
-        }, 3000);
-      }; 
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const updatedUsers = users.map((u) =>
+        u.id === valueId
+          ? {
+              ...u,
+              name: formData.name,
+              email: formData.email,
+              company: {
+                name: formData.company.name
+              }
+            }
+          : u
+      );
+      setUsers(updatedUsers);
+      setUpdate(false)
+    };
+     
+
 
  
   return (
@@ -41,23 +56,12 @@ export const Updateusers = () => {
      <div className={style.container}>
     <form className={style.userform} onSubmit={handleSubmit}>
    <div className={style.formgroup}>
-     <label htmlFor="firstname">First Name:</label>
+     <label htmlFor="name">Name:</label>
      <input
        type="text"
-       id="firstname"
-       name="firstname"
-       value={formData.firstname}
-       onChange={handleChange}
-       required
-     />
-   </div>
-   <div className="form-group">
-     <label htmlFor="lastname">Last Name:</label>
-     <input
-       type="text"
-       id="lastname"
-       name="lastname"
-       value={formData.lastname}
+       id="name"
+       name="name"
+       value={formData.name}
        onChange={handleChange}
        required
      />
@@ -74,11 +78,11 @@ export const Updateusers = () => {
      />
    </div>
    <div className="form-group">
-     <label htmlFor="department">Department:</label>
+     <label htmlFor="company">Department:</label>
      <select
-       id="department"
-       name="department"
-       value={formData.department}
+       id="company"
+       name="company"
+       value={formData.company.name}
        onChange={handleChange}
        required
      >
@@ -90,11 +94,6 @@ export const Updateusers = () => {
    </div>
    <button type="submit">Edit</button>
  </form>
- {showNotification && (
-        <div className={`${style.notification} ${style.success}`}>
-          {notificationMessage}
-        </div>
-      )}
  </div>
     </>
    

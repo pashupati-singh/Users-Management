@@ -1,9 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import style from "../CSS/pagination.module.css"
 
 export const Pagination = ({page,handlePage}) => {
-    const {lastPage} = useSelector((store)=>store.userReducer)
+const lastPage = Math.ceil(10/4)
 
 const handlePagination =(value) =>{
   handlePage(value)
