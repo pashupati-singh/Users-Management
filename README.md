@@ -5,7 +5,7 @@ The User Management Website is a platform designed to manage user data efficient
 
 deployed on netlify - https://jolly-toffee-301912.netlify.app/
 
-server deployed on render :- https://users-management-1.onrender.com
+Using JSONplaceholder api /users for server side
 
 # Features
 Add User: Easily add new users to the system.
@@ -30,25 +30,18 @@ Install dependencies:
 
 3. bash
 Copy code
-npm install
-Start the development server:
-
-4. bash
-Copy code
 npm start
 Open your web browser and navigate to http://localhost:3000.
 
 # Usage
 Add User: Click on the "Add User" button to add a new user. Fill out the required information in the form and submit.
 View User List: The home page displays a list of all users. Each user card contains options to edit or delete the user.
-Edit User: Click on the "Edit" button on a user card to modify their details. You will be redirected to a form pre-filled with the user's existing information.
+Edit User: Click on the "Edit" button on a user card to modify their details. You will be a form pre-filled with the user's existing information.
 Delete User: Click on the "Delete" button on a user card to remove the user from the system.
 
 # Technologies Used
-React
-Node.js
-Express
-MongoDB
+CSS
+React.js
 
 Folder Structure
    User Managment Dashboard
@@ -79,18 +72,8 @@ Folder Structure
         ├── Pages
         │   ├── HomePage.jsx
         │   └── MainRoutes.jsx
-        ├── Redux
-        │   ├── UserManagment
-                │   ├── action.js
-                │   ├── actionType.js
-                |   ├── reducer.js
-        │   ├── store
         ├── App.css
         ├── App.js
         ├── index.css
         └── index.js
-# Important 
 
-Home page :- click on Logo 
-
-Add user :- Click on add user on Navbar
